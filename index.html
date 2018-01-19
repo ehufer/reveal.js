@@ -7,7 +7,7 @@
 		<title>reveal.js</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/league.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -24,8 +24,203 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section id="title">
+					<h2>Microservices Introduction</h2>
+					<img height="60%" width="60%" src="https://www.portoflosangeles.org/newsroom/pola_presskit_photos/Hi_Res/operations/TraPac%20Container%20Terminal.jpg"/>
+					<p>By <a href="http://twitter.com/ehudes">@ehudes</a></p>
+				</section>
+				<section id="agenda">
+					<h2>Agenda</h2>
+					<ul>
+						<li>Reactive Manifesto</li>
+						<li>Domain Driven Design</li>
+						<li>MicroServices Concepts</li>
+						<li>Scala</li>
+						<li>CI/CD Pipeline Concourse</li>
+						<li>Docker/Kubernetes</li>
+						<li>gRPC</li>
+						<li>Cassandra</li>
+						<li>Kafka</li>
+					</ul>
+				</section>
+				<section id="me">
+					<h2>Ehudes Garcia</h2>
+					<h3>Software Engineer, M.S. in Computer Science</h3>
+					<ul>
+						<li>13 years developing large-scale software solutions</li>
+						<li>Colombia, Argentina, Mexico, Peru, Japan, soon USA and Canada?</li>
+						<li>C#, Java, Scala</li>
+						<li>Micorservice Engineer at Starbucks</li>
+						<li>Soccer fan, English learner</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Starbucks Rewards in Japan</h2>
+					<div style="margin: auto;">
+					<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Just had one more celebration with <a href="https://twitter.com/Starbucks?ref_src=twsrc%5Etfw">@Starbucks</a> C-levels for our “flawless” launch in Japan. :) <a href="https://t.co/MhzqT1a0I4">pic.twitter.com/MhzqT1a0I4</a></p>&mdash; Jamie Allen (@jamie_allen) <a href="https://twitter.com/jamie_allen/status/922904473260789760?ref_src=twsrc%5Etfw">October 24, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+				</section>
+				<section id="manifesto1">
+					<h2>Reactive Manifesto</h2>
+					<p>Today applications are deployed on everything from mobile devices to cloud-based clusters running thousands of multi-core processors. Users expect millisecond response times and 100% uptime. Data is measured in Petabytes. Today's demands are simply not met by yesterday’s software architectures.</p>
+				</section>
+				<section id="manifesto2">
+					<h2>Reactive Manifesto</h2>
+					<img src="https://www.reactivemanifesto.org/images/reactive-traits.svg">
+				</section>
+				<section id="manifesto3">
+					<h2>Reactive Manifesto</h2>
+					<div><img src="https://www.safaribooksonline.com/library/view/reactive-design-patterns/9781617291807/01fig01_alt.jpg"></div>
+					<div><img  height="10%" width="10%" src="https://images-na.ssl-images-amazon.com/images/I/51NRNEVroQL._SX258_BO1,204,203,200_.jpg"></div>
+				</section>
+				<section id="manifesto4">
+					<h2>Reactive Manifesto</h2>
+					<h3>What about the rest of Quality Attributes?</h3>
+					<ul>
+						<li>Availability</li>
+						<li>Reliability</li>
+						<li>Scalability</li>
+						<li>Reusability - Crosscutting corcerns: logging, metrics</li>
+						<li>Testability - Really hard in Distributed Architectures</li>
+						<li><b>Security - The most important nowadays</b></li>
+						<li><b>Observability(Monitoring) - New buzzword, key to know when the service should be Elastic</b></li>
+					</ul>
+				</section>
+				<section id="ddd1">
+					<h2>Domain Driven Design</h2>
+					<div>
+					<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">&quot;domain experts don&#39;t describe domains with decoupling in mind; that&#39;s our job!&quot; <a href="https://twitter.com/mathiasverraes?ref_src=twsrc%5Etfw">@mathiasverraes</a> <a href="https://twitter.com/hashtag/EDDD?src=hash&amp;ref_src=twsrc%5Etfw">#EDDD</a></p>&mdash; Alberto Brandolini (@ziobrando) <a href="https://twitter.com/ziobrando/status/910990407303020545?ref_src=twsrc%5Etfw">September 21, 2017</a></blockquote>
+	<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+	</div>
+               </section>
+               <section id="ddd2">
+               		<h2>Domain Driven Design</h2>
+               		<h3>Strategic: Understanding The Real Business Requirements</h3>
+               		<ul>
+               			<li>Ubiquitous Language</li>
+               			<li>Bounded Context</li>
+               			<li>Context Maps</li>
+               		</ul>
+               </section>
+               <section id="ddd3">
+               		<h2>Domain Driven Design</h2>
+               		<h3>Tactic: Avoiding The Distributed Big Ball Of Mud</h3>
+               		<ul>
+               			<li>Aggregates - Good candidate to be encasulapted as a MicroService</li>
+               			<li>Repositories - Every MicroService owns its repository</li>
+               		</ul>
+               </section>
+               <section id=ddd4>
+               	    <h2>Domain Driven Design</h2>
+               	    <h3>Event Storming</h3>
+               	    <img src="http://www.leanovate.de/wp-content/uploads/2017/03/event-storming-post-its-720x240.jpg">
+               </section>
+               <section id=ddd4>
+               	    <h2>Domain Driven Design</h2>
+               	    <h3>Event Storming</h3>
+               	    <img src="http://www.avanscoperta.it/wp-content/uploads/2013/08/EventStorming_discussions560.png">
+               </section>
+               <section id="ms1">
+               		<h2>Microservices Concepts</h2>
+               		<ul>
+               			<li>Good level of abtraction to apply the Single Responsabilty Principle</li>
+               			<li>Class too small, Service too big</li>
+               			<li>One MicroService is not a MicroService, they come in systems, Jonas Boner</li>
+               			<li>Welcome to Distributed Systems</li>
+               			<li>CAP Theorem</li>
+               			<li>Avoiding a Single Point Of Failure</li>
+               			<li>Avoiding Cascading Failures with Circuit Brakers</li>
+               		</ul>
+               </section>
+               <section id="ms1">
+               		<h2>Microservices Concepts</h2>
+               		<ul>
+               			<li>Hexagonal Archictecture for inbound/outbound external communication</li>
+               			<li>API Gateway, a service that provides each client with unified interface to services</li>
+               			<li>Service Mesh, MicroService intercomunication</li>
+               			<li>Log aggregation, correlationId</li>
+               			<li>Health Check endpoints</li>
+               			<li>Externalized configuration</li>
+               		</ul>
+               </section>
+               <section>
+               		<h2>Scala</h2>
+               		<ul>
+               			<li>Runs on the JVM</li>
+               			<li>OOP way: Objects, Interfaces, GoF, IoC</li>
+               			<li>FP way: Functions, Currying, Pattern Matching, Functors, Category Theory</li>
+               			<li>No returning Nulls</li>
+               			<li>No throwing Exceptions</li>
+               			<li>Immutable collections</li>
+               			<li><a href="https://speakerdeck.com/pauljamescleary/scala-for-the-rest-of-us">Scala for the rest of us</a></li>
+               		</ul>
+               </section>
+               <section>
+               		<h2>CI/CD Pipeline, Concourse</h2>
+               		<ul>
+               			<li>Git/Github repository</li>
+               			<li>CI: Each check-in is then verified by an automated build</li>
+               			<li>Build: compiles code, runs unit/integration tests, creates and stores the docker image</li>
+               			<li>CD: an approach in which teams ensure that every change to the system is releasable, and that we can release any version at the push of a button</li>
+               			<li>Deploys the docker image into QA(acceptance testing), Load(Load testing), PROD environments</li>
+               			<li>Creates DBs, Kafka Topic</li>
+               			<li>Every CD pipeline is unique</li>
+               			<li>Key for DevOps</li>
+               			<li><a href="https://concourse.ci/concepts.html">Concourse</a></li>
+               		</ul>
+               </section>
+               <section>
+               	    <h2>Docker/Kubernetes</h2>
+               	    <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">My code headed to prod <a href="https://t.co/L6KVw9UqVh">pic.twitter.com/L6KVw9UqVh</a></p>&mdash; Nick Canzoneri (@nick_canz) <a href="https://twitter.com/nick_canz/status/910500800392318977?ref_src=twsrc%5Etfw">September 20, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+               </section>
+               <section>
+               		<h2>Docker/Kubernetes</h2>
+               		<ul>
+               			<li>Docker is a shipping container system for code</li>
+               			<li>Build once (finally) run anywhere</li>
+               			<li>Containers vs VMs: Containers are isolated but share the same OS kernel, lightweight, faster start up(seconds)</li>
+               			<li>Containers and VMs together provide a tremendous amount of flexibilidy to deploy and manage apps</li>
+               		</ul>
+               </section>
+               <section>
+               		<h2>Docker/Kubernetes</h2>
+               		<ul>
+               			<li>Kubernetes: Container Orchestrator/Cluster Manager</li>
+               			<li>Developed by Google</li>
+               			<li>Places containers on nodes</li>
+               			<li>Recovers automatically from failure</li>
+               			<li>Basic monitoring, logging, health checking</li>
+               			<li>Enables containers to find each other</li>
+               			<li><a href="http://slides.eightypercent.net/kubernetes-101/#8">kubernetes-101/</a>
+               		</ul>
+               </section>
+               <section>
+               		<h2>gRPC</h2>
+               		<ul>
+               			<li>Multiplatform RPC system</li>
+               			<li>Developed by Google</li>
+               			<li>Allow sync/async communication</li>
+               			<li>Based on http/2 <a href="http://www.http2demo.io/">Http demo</a></li>
+               			<li>C, C++, Java, Scala, C#, etc</li>
+               			<li>IDL using protobuf <a href="https://github.com/pbvie/hello-grpc-scala/tree/master/protocol/src/main/protobuf">sample</a> </li>
+               </section>
+               <section>
+               		<h2>Cassandra</h2>
+               		<h3><a href="https://www.slideshare.net/DataStax/an-overview-of-apache-cassandra">Distributed, high performance, scalable, fault tolerant NoSql database</a></h3>
+               </section>
+               <section>
+               		<h2>Kafka</h2>
+               		<h3>Distributed, high performance, scalable, fault tolerant Commit log</h3>
+               		<img src="https://www.safaribooksonline.com/library/view/kafka-the-definitive/9781491936153/assets/ktdg_0105.png">
+               </section>
+
+               <section>
+               		<h2>Kafka</h2>
+               		<h3>Consumers by partition</h3>
+               			<img src="https://www.safaribooksonline.com/library/view/kafka-the-definitive/9781491936153/assets/ktdg_0106.png">
+               	</section>
+
 			</div>
 		</div>
 
